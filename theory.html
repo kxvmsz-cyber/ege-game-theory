@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="ru">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+  <meta content="#121117" name="theme-color"/>
+  <meta content="Теория игр: задания ЕГЭ 19, 20, 21, разбор Python и мини-тест" name="description"/>
+  <title>
+   Теория | Ход за ходом
+  </title>
+  <link href="css/style.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="site-header">
+   <div class="container header-inner">
+    <a class="logo" href="index.html">
+     <span class="logo-mark">
+      ♟
+     </span>
+     ХОД ЗА ХОДОМ
+    </a>
+    <button aria-controls="site-nav" aria-expanded="false" aria-label="Открыть меню" class="menu-toggle" data-menu-toggle="" type="button">
+     ☰
+    </button>
+    <nav aria-label="Основное меню" class="nav-links" data-nav="" id="site-nav">
+     <a href="index.html">
+      Главная
+     </a>
+     <a href="theory.html">
+      Теория
+     </a>
+     <a href="tasks.html">
+      Разбор задач
+     </a>
+     <a href="random.html">
+      Случайная задача
+     </a>
+     <a href="quiz.html">
+      Тест
+     </a>
+     <a href="results.html">
+      Результаты
+     </a>
+     <button aria-label="Переключить тему оформления" class="theme-switch" id="themeBtn" type="button">
+      🌙 Тёмная тема
+     </button>
+    </nav>
+   </div>
+  </header>
+  <section class="page-intro">
+   <div class="container">
+    <span class="eyebrow">
+     ЕГЭ · Информатика · 19–21
+    </span>
+    <h1>
+     Теория игр — без путаницы
+    </h1>
+    <p>
+     Изучаем стратегию на дереве ходов и решаем задачи 19–21 рекурсией Python.
+    </p>
+   </div>
+  </section>
+  <main class="section">
+   <div class="container content-stack">
+    <div class="notice">
+     Материал для страницы «Теория» подготовлен специально для этого учебного проекта. Загруженные DOCX/PDF посвящены HTML, CSS и JavaScript, а не теории игр.
+    </div>
+    <div class="visual-strip">
+     <img alt="Схема куч камней" src="assets/stones.svg"/>
+     <img alt="Пример кода Python" src="assets/python.svg"/>
+    </div>
+    <div class="theory-layout">
+     <div class="content-stack">
+      <article class="paper">
+       <h2>
+        1. Как устроена игра
+       </h2>
+       <p>
+        Два игрока — Петя и Ваня — по очереди изменяют количество камней в одной или двух кучах. Первый ход делает Петя. Для каждой задачи заданы допустимые ходы и условие окончания игры.
+       </p>
+       <p>
+        <strong>
+         Выигрышная стратегия
+        </strong>
+        — такой способ игры, при котором игрок может гарантированно победить независимо от ходов соперника.
+       </p>
+       <p>
+        <strong>
+         Конечная позиция
+        </strong>
+        — состояние, в котором выполнено условие окончания игры. Побеждает тот, кто выполнил его своим ходом.
+       </p>
+      </article>
+      <article class="paper">
+       <h2>
+        2. Как различать задания 19–21
+       </h2>
+       <details open="">
+        <summary>
+         Задание 19 · Ваня побеждает первым ходом
+        </summary>
+        <p>
+         Петя не может закончить игру сразу; после
+         <strong>
+          любого
+         </strong>
+         хода Пети Ваня должен иметь ход, который заканчивает игру победой.
+        </p>
+       </details>
+       <details>
+        <summary>
+         Задание 20 · Петя побеждает вторым ходом
+        </summary>
+        <p>
+         Петя не может выиграть первым ходом, но существует его начальный ход, после которого при
+         <strong>
+          любом
+         </strong>
+         ответе Вани он выигрывает своим вторым ходом.
+        </p>
+       </details>
+       <details>
+        <summary>
+         Задание 21 · Ваня побеждает первым или вторым ходом
+        </summary>
+        <p>
+         Ваня гарантированно выигрывает не позднее своего второго хода при любых ходах Пети, но не может гарантировать победу именно своим первым ходом.
+        </p>
+       </details>
+      </article>
+      <article class="paper">
+       <h2>
+        3. Логика Python-решения
+       </h2>
+       <p>
+        Функция
+        <span class="code-inline">
+         f(position, m)
+        </span>
+        проверяет достижимость нужного результата при ограничении на число оставшихся ходов.
+       </p>
+       <ul>
+        <li>
+         <span class="code-inline">
+          m
+         </span>
+         — количество ходов обоих игроков, оставшихся в рассматриваемой последовательности.
+        </li>
+        <li>
+         <span class="code-inline">
+          any(h)
+         </span>
+         — достаточно хотя бы одного удачного продолжения при выборе собственного хода.
+        </li>
+        <li>
+         <span class="code-inline">
+          all(h)
+         </span>
+         — требование должно выполняться при каждом возможном ответе противника.
+        </li>
+        <li>
+         <span class="code-inline">
+          if m == 0: return False
+         </span>
+         — предел глубины достигнут без победы.
+        </li>
+        <li>
+         Если порог достигнут, результат базового случая зависит от чётности
+         <span class="code-inline">
+          m
+         </span>
+         : важно, кто совершил последний ход.
+        </li>
+       </ul>
+       <p>
+        В приведённой в практике схеме проверяют глубины
+        <strong>
+         1, 2, 3, 4
+        </strong>
+        , а ограничения на победу за один ход добавляют отдельно.
+       </p>
+      </article>
+      <article class="paper">
+       <h2>
+        4. Универсальный порядок решения
+       </h2>
+       <ol>
+        <li>
+         Выписать начальную позицию и диапазон S.
+        </li>
+        <li>
+         Задать все возможные ходы.
+        </li>
+        <li>
+         Записать проверку достижения порога.
+        </li>
+        <li>
+         Реализовать рекурсию с
+         <span class="code-inline">
+          any
+         </span>
+         и
+         <span class="code-inline">
+          all
+         </span>
+         .
+        </li>
+        <li>
+         Перебрать допустимые S и выбрать минимальные или максимальные согласно условию.
+        </li>
+        <li>
+         Сверить полученные ответы с разбором.
+        </li>
+       </ol>
+       <a class="btn" href="tasks.html">
+        Перейти к задачам →
+       </a>
+      </article>
+     </div>
+     <aside class="content-stack aside-sticky">
+      <div class="paper">
+       <h3>
+        Дерево ходов
+       </h3>
+       <img alt="Начальная позиция и разветвление на возможные ходы" class="game-tree" src="assets/tree.svg"/>
+       <p class="mini-note">
+        На каждом уровне выбор зависит от игрока: где-то достаточно одного продолжения, а где-то нужно проверить все.
+       </p>
+      </div>
+      <div class="paper">
+       <h3>
+        Запомни
+       </h3>
+       <p>
+        <strong>
+         Свой выбор → any.
+        </strong>
+        <br/>
+        <strong>
+         Все ответы соперника → all.
+        </strong>
+       </p>
+       <p class="mini-note">
+        Это мнемоника для рекурсивной проверки конкретного порядка ходов, а не универсальная формула для любых игр.
+       </p>
+      </div>
+     </aside>
+    </div>
+   </div>
+  </main>
+  <footer class="site-footer">
+   <div class="container footer-inner">
+    <span>
+     ©
+     <span data-year="">
+     </span>
+     Ход за ходом · Учебный проект
+    </span>
+    <span>
+     Теория игр · ЕГЭ по информатике ·
+     <a href="https://kompege.ru/task" rel="noopener noreferrer" target="_blank">
+      Банк КЕГЭ
+     </a>
+    </span>
+   </div>
+  </footer>
+  <script defer="" src="js/main.js">
+  </script>
+ </body>
+</html>

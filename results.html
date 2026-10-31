@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ru">
+ <head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width,initial-scale=1.0" name="viewport"/>
+  <meta content="#121117" name="theme-color"/>
+  <meta content="Теория игр: задания ЕГЭ 19, 20, 21, разбор Python и мини-тест" name="description"/>
+  <title>
+   Результаты | Ход за ходом
+  </title>
+  <link href="css/style.css" rel="stylesheet"/>
+ </head>
+ <body>
+  <header class="site-header">
+   <div class="container header-inner">
+    <a class="logo" href="index.html">
+     <span class="logo-mark">
+      ♟
+     </span>
+     ХОД ЗА ХОДОМ
+    </a>
+    <button aria-controls="site-nav" aria-expanded="false" aria-label="Открыть меню" class="menu-toggle" data-menu-toggle="" type="button">
+     ☰
+    </button>
+    <nav aria-label="Основное меню" class="nav-links" data-nav="" id="site-nav">
+     <a href="index.html">
+      Главная
+     </a>
+     <a href="theory.html">
+      Теория
+     </a>
+     <a href="tasks.html">
+      Разбор задач
+     </a>
+     <a href="random.html">
+      Случайная задача
+     </a>
+     <a href="quiz.html">
+      Тест
+     </a>
+     <a href="results.html">
+      Результаты
+     </a>
+     <button aria-label="Переключить тему оформления" class="theme-switch" id="themeBtn" type="button">
+      🌙 Тёмная тема
+     </button>
+    </nav>
+   </div>
+  </header>
+  <section class="page-intro">
+   <div class="container">
+    <span class="eyebrow">
+     ЕГЭ · Информатика · 19–21
+    </span>
+    <h1>
+     Результаты участников
+    </h1>
+    <p>
+     Результаты теста сохраняются в этом браузере и доступны на этом устройстве.
+    </p>
+   </div>
+   <div class="container intro-art-wrap">
+    <img alt="Программирование на Python" class="intro-art" src="assets/python.svg"/>
+   </div>
+  </section>
+  <main class="section">
+   <div class="container">
+    <div class="paper">
+     <div class="task-top">
+      <h2>
+       Таблица результатов
+      </h2>
+      <button class="btn" id="refresh-results" type="button">
+       ↻ Обновить
+      </button>
+     </div>
+     <p aria-live="polite" class="subtle" id="results-status">
+     </p>
+     <div class="table-scroll">
+      <table class="results-table">
+       <thead>
+        <tr>
+         <th>
+          №
+         </th>
+         <th>
+          Имя
+         </th>
+         <th>
+          Баллы
+         </th>
+         <th>
+          Дата
+         </th>
+        </tr>
+       </thead>
+       <tbody id="results-body">
+       </tbody>
+      </table>
+     </div>
+    </div>
+   </div>
+  </main>
+  <footer class="site-footer">
+   <div class="container footer-inner">
+    <span>
+     ©
+     <span data-year="">
+     </span>
+     Ход за ходом · Учебный проект
+    </span>
+    <span>
+     Теория игр · ЕГЭ по информатике ·
+     <a href="https://kompege.ru/task" rel="noopener noreferrer" target="_blank">
+      Банк КЕГЭ
+     </a>
+    </span>
+   </div>
+  </footer>
+  <script defer="" src="js/main.js">
+  </script>
+  <script defer="" src="js/results.js">
+  </script>
+ </body>
+</html>
